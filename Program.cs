@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab18
 {
@@ -10,7 +6,18 @@ namespace Lab18
     {
         static void Main(string[] args)
         {
-            
+            int[] arrayOne = {2, 4, 4, 90, 41, 64, 100, 1, 1, 16, 17}; 
+
+            Console.Write($"Array = {arrayOne}");
+
+            RunCounterAlgorithm(arrayOne);
+
+            Console.ReadKey();
+        }
+
+        static void RunCounterAlgorithm(int[] arrayOne)
+        {
+             
         }
     }
 }
