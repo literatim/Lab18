@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Lab18
 {
@@ -7,38 +8,67 @@ namespace Lab18
     {
         public static bool RemoveAt(this LinkedList<int> list, int index)
         {
-            var removed = true;
             try
             {
+                LinkedListNode<int> currentNode = list.First;
+                for (int i = 0; i <= index && currentNode != null; i++)
+                {
+                    if (i != index)
+                    {
+                        currentNode = currentNode.Next;
+                        continue;
+                    }
+
+                    list.Remove(currentNode);
+                }
+
+                return true;
             }
-            catch (Exception e)
+            catch (IndexOutOfRangeException e)
             {
-                removed = false;
-                Console.WriteLine(typeof(IndexOutOfRangeException));
-                throw;
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+
+        public static void PrintReverse(this LinkedList<int> linkedList)
+        {
+            for (int i = linkedList.Count - 1; i > -1; i--)
+            {
+                linkedList.AddLast(linkedList.ElementAt(i));
+                linkedList.Remove(linkedList.ElementAt(i));
             }
 
-            return removed;
+            foreach (var item in linkedList)
+            {
+                Console.WriteLine(item);
+            }
         }
 
-        public static void PrintReverse(this LinkedList<int> list)
+        public static bool InsertAt<T>(this LinkedList<T> list, int index, T o)
         {
-        }
-
-        public static bool InsertAt(this LinkedList<int> list, int index, object o)
-        {
-            var inserted = true;
             try
             {
-            }
-            catch (Exception e)
-            {
-                inserted = false;
-                Console.WriteLine(typeof(IndexOutOfRangeException));
-                throw;
-            }
+                LinkedListNode<T> currentNode = list.First;
+                for (int i = 0; i <= index && currentNode != null; i++)
+                {
+                    if (i != index)
+                    {
+                        currentNode = currentNode.Next;
+                        continue;
+                    }
 
-            return inserted;
+                    list.AddBefore(currentNode, o);
+                }
+
+                return true;
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
         }
     }
+
 }
